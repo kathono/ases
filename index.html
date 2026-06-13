@@ -19,6 +19,30 @@
 </head>
 <body>
 
+    <div id="UI">
+        Aponte a câmera para uma carta do jogo ASES<br>
+        <button id="btn-camera" style="margin-top: 8px; padding: 6px 12px; pointer-events: auto;">Ativar Câmera Manualmente</button>
+    </div>
+
+    <a-scene id="cenario-ar" mindar-image="imageTargetSrc: ./targets.mind; autoStart: false;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    </a-scene>
+
+    <script>
+        // ... (Mantenha o resto do código do loop que cria as 300 cartas exatamente igual) ...
+
+        // Lógica para o botão de ativação manual se necessário
+        const btnCamera = document.querySelector('#btn-camera');
+        btnCamera.addEventListener('click', () => {
+            const sceneEl = document.querySelector('a-scene');
+            const arSystem = sceneEl.systems["mindar-image-system"];
+            arSystem.start(); // Força o início do sistema de AR e o pedido da câmera
+            btnCamera.style.display = 'none'; // Esconde o botão após clicar
+        });
+    </script>
+</body>
+<body>
+
     <div id="UI">Aponte para uma carta do jogo ASES</div>
 
     <!-- Configuração da Câmera e do Banco de Imagens das Cartas -->
